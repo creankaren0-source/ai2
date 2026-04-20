@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Download, Phone, Mail, FileText, ChevronDown, ChevronUp, Copy, ArrowUp, Briefcase, Award, GraduationCap, Target, Cpu, LineChart, Wrench, Check, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Phone, Mail, ChevronDown, ChevronUp, Copy, ArrowUp, Briefcase, Award, GraduationCap, Target, Cpu, LineChart, Wrench, Check, ChevronRight, CheckCircle2 } from 'lucide-react';
 
 const KHAKI_BG = "bg-[#fbf9f6]";
 const BLUE_BG = "bg-[#f0f4f9]";
@@ -158,26 +158,6 @@ function AccordionItem({ item }: { key?: React.Key; item: any }) {
   );
 }
 
-function CopyActionBtn({ text, label, icon: Icon }: { text: string, label: string, icon: any }) {
-  const [copied, setCopied] = useState(false);
-  const handleCopy = () => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-  return (
-    <button 
-      onClick={handleCopy}
-      className="flex flex-col items-center justify-center gap-3 p-5 bg-white/70 backdrop-blur-md rounded-2xl border border-white/80 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-[#00f2ff]/50 transition-all cursor-pointer group"
-    >
-      <div className="p-3 bg-[#f0f4f9] rounded-full text-[#008b96] group-hover:bg-[#00f2ff]/10 group-hover:scale-110 transition-all">
-        {copied ? <Check className="w-5 h-5" /> : <Icon className="w-5 h-5" />}
-      </div>
-      <span className="text-sm font-semibold text-slate-700">{copied ? "已复制！" : label}</span>
-    </button>
-  );
-}
-
 function SectionWrapper({ id, bg, children }: { id: string, bg: string, children: React.ReactNode }) {
   return (
     <section id={id} className={`py-32 min-h-screen flex items-center justify-center ${bg} relative overflow-hidden`}>
@@ -225,10 +205,6 @@ export default function App() {
                 {item}
               </button>
             ))}
-            <a href="/resume.pdf" download="李谟东_产品简历.pdf" className="bg-[#008b96] text-white px-5 py-2.5 rounded-full hover:bg-[#007a84] hover:shadow-lg hover:shadow-[#008b96]/20 transition-all flex items-center gap-2">
-              <Download className="w-4 h-4" />
-              简历下载
-            </a>
           </div>
         </div>
       </nav>
@@ -248,20 +224,11 @@ export default function App() {
                 <p className="text-lg md:text-xl text-slate-600 font-medium mb-4">
                   正在寻找 <span className="text-[#008b96] font-bold px-1">~实习机会</span>
                 </p>
-                <p className="flex items-center justify-center md:justify-start gap-2 text-slate-500 font-medium mb-12">
+                <p className="flex items-center justify-center md:justify-start gap-2 text-slate-500 font-medium mb-0">
                   <CheckCircle2 className="w-5 h-5 text-[#008b96]"/>
                   可实习：5天/周 · 6个月及以上
                 </p>
               </motion.div>
-
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <CopyActionBtn text="16620013401" label="复制电话" icon={Phone} />
-                <CopyActionBtn text="limodong@outlook.com" label="复制邮箱" icon={Mail} />
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="col-span-2 flex items-center justify-center gap-3 p-5 bg-[#008b96] text-white rounded-2xl shadow-lg hover:shadow-[#008b96]/30 hover:-translate-y-1 transition-all cursor-pointer group">
-                  <FileText className="w-5 h-5" />
-                  <span className="font-semibold text-base">预览完整简历</span>
-                </a>
-              </div>
             </div>
 
             {/* Education & Awards styling based on image 0 grids */}
@@ -394,7 +361,7 @@ export default function App() {
           <h2 className="text-5xl font-bold tracking-tight mb-8">准备好共创好产品了吗？</h2>
           <p className="text-xl text-slate-500 mb-12">随时欢迎通过以下方式与我取得联系，期待交流！</p>
           
-          <div className="grid md:grid-cols-2 gap-6 mb-16">
+          <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white/80 p-8 rounded-3xl shadow-sm border border-white flex flex-col items-center justify-center">
               <Phone className="w-10 h-10 text-[#008b96] mb-4" />
               <p className="text-2xl font-bold text-slate-800 tracking-wider mb-6">166 2001 3401</p>
@@ -415,17 +382,6 @@ export default function App() {
                 一键复制邮箱
               </button>
             </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-10 py-5 rounded-full border-2 border-[#008b96] text-[#008b96] font-bold text-lg hover:bg-[#00f2ff]/10 transition-colors flex items-center justify-center gap-3">
-               <FileText className="w-6 h-6" />
-               在线预览简历
-             </a>
-             <a href="/resume.pdf" download="李谟东_产品实习简历.pdf" className="w-full sm:w-auto px-10 py-5 rounded-full bg-[#008b96] text-white font-bold text-lg shadow-xl shadow-[#008b96]/20 hover:-translate-y-1 hover:bg-[#007a84] transition-all flex items-center justify-center gap-3">
-               <Download className="w-6 h-6" />
-               下载 PDF 简历
-             </a>
           </div>
         </div>
       </SectionWrapper>
